@@ -1,0 +1,24 @@
+# dsh-input-prediction —— bundle patch 层
+#
+# 只把自己插进配置树，不改动任何 DSH 本体文件。
+# 需要调参时，改这里（或改 profile 的 cordis.patch.yml 里同 id 的 override）。
+- insert:
+    - id: dsh-input-prediction
+      name: dsh-input-prediction
+      config:
+        enabled: true
+        # provider/model 留空 = 跟随「默认模型」（agent-default-model）
+        provider: ''
+        model: ''
+        # 补全是「续写十几个字」，不能让模型先思考（provider 默认 effort=high，
+        # 会把 maxTokens 烧光、返回空文本）。
+        reasoningEffort: 'off'
+        maxTokens: 160
+        temperature: 0.3
+        contextMessages: 16
+        contextChars: 600
+        maxSuggestionChars: 60
+        styleHint: ''
+        # 诊断日志（''=关闭，默认关）。填一个路径后，插件会把「客户端是否加载 /
+        # 每次预测 / Tab 接受 / 设置改动」写成一行行 JSON，排查问题时 tail 它即可。
+        debugLog: ''

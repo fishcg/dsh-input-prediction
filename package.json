@@ -1,0 +1,52 @@
+{
+  "name": "dsh-input-prediction",
+  "version": "0.2.0",
+  "type": "module",
+  "description": "DSH 输入预测插件：在输入框里用灰字续写你可能要发的下一句（Tab 接受），每轮回复后再给 1–3 条可一键发送的建议。",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "input-prediction",
+    "autocomplete",
+    "composer"
+  ],
+  "license": "MIT",
+  "author": "fishcg",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fishcg/dsh-input-prediction.git"
+  },
+  "homepage": "https://github.com/fishcg/dsh-input-prediction#readme",
+  "bugs": {
+    "url": "https://github.com/fishcg/dsh-input-prediction/issues"
+  },
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-session",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ],
+      "platform": "web"
+    }
+  },
+  "engines": {
+    "node": ">=20",
+    "dsh": ">=0.2.0-rc.2"
+  }
+}
